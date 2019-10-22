@@ -1,0 +1,40 @@
+.main-content {
+    padding: 3%;
+}
+
+.operacion-radio-group {
+display: flex;
+flex-direction: column;
+margin: 15px 0;
+}
+
+.operacion-radio-button {
+margin: 5px;
+}
+.action {
+    padding: 3%;
+}
+
+.loading-shade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+}
