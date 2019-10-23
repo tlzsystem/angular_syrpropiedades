@@ -78,8 +78,15 @@ export class AppComponent implements OnInit{
   iniciarBusquedaURLs(){
     this.total_inicial = 0;
     this.offset = 0;
+    var currentCategory = '';
+    if (this.tipoEstadoSelected.value==null){
+      currentCategory = this.tipoOperacionSelected.value.id;
+    }else{
+      currentCategory = this.tipoEstadoSelected.value.id;
+    }
+    
   
-    this.servicio.getInitialUrls(this.tipoEstadoSelected.value.id,this.city.id, this.offset).subscribe(data=>{
+    this.servicio.getInitialUrls(currentCategory,this.city.id, this.offset).subscribe(data=>{
         console.log(data);
         this.total_inicial = data.paging.total;
         this.offset = this.offset + 50; 
@@ -87,10 +94,16 @@ export class AppComponent implements OnInit{
   }
 
   sendDataToBackend(){
-    this.formatedFechaInicio = this.formatFecha(this.fechaInicio); 
-    this.formatedFechaFin = this.formatFecha(this.fechaFin); 
-       this.isLoadingResults = true;
-      this.servicioBackend.getValores(this.tipoEstadoSelected.value.id, this.city.id, this.formatedFechaInicio, this.formatedFechaFin)
+      this.formatedFechaInicio = this.formatFecha(this.fechaInicio); 
+      this.formatedFechaFin = this.formatFecha(this.fechaFin); 
+      this.isLoadingResults = true;
+      var currentCategory = '';
+      if (this.tipoEstadoSelected.value==null){
+        currentCategory = this.tipoOperacionSelected.value.id;
+      }else{
+        currentCategory = this.tipoEstadoSelected.value.id;
+      }
+      this.servicioBackend.getValores(currentCategory, this.city.id, this.formatedFechaInicio, this.formatedFechaFin)
       .subscribe(data=>{
         if (data.length>0){
           console.log(data);
